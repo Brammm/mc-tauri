@@ -1,3 +1,9 @@
+use proto::dataserviceproto::data_service_client;
+
+pub mod proto {
+    tonic::include_proto!("dataserviceproto");
+}
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn greet(name: &str) -> String {

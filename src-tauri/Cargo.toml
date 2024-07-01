@@ -1,8 +1,8 @@
 [package]
-name = "tauri"
-version = "0.0.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "mc-tauri"
+version = "0.1.0"
+description = "MC client in Tauri"
+authors = ["Bram Van der Sype"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -13,10 +13,12 @@ crate-type = ["lib", "cdylib", "staticlib"]
 
 [build-dependencies]
 tauri-build = { version = "2.0.0-beta", features = [] }
+tonic-build = "0.11.0"
 
 [dependencies]
 tauri = { version = "2.0.0-beta", features = [] }
 tauri-plugin-shell = "2.0.0-beta"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-
+prost = "0.12.6"
+tonic = "0.11.0"

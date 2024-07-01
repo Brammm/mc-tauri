@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package featureproto;
+
+enum FeatureFlag {
+    STUDYPLANNING = 0;
+}
+
+// Enabled feature flags
+message GetFeatureFlagResponse {
+	repeated FeatureFlag flag = 1;
+}

@@ -1,0 +1,124 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.grpc";
+option java_outer_classname = "GeneralProto";
+option objc_class_prefix = "RTG";
+
+import "google/protobuf/timestamp.proto";
+
+package generalproto;
+
+// Generic alarms
+enum AlarmType {
+	NONE=0;
+	TOO_HIGH=1;
+	TOO_LOW=2;
+}
+
+// Custom fields
+message Custom {
+	string name = 1;
+	oneof value {
+		string string_value = 2;
+		bool bool_value = 3;
+		int64 int_value = 4;
+		float float_value = 5;
+		double double_value = 6;
+	}
+}
+
+// Failure
+message Failure {
+	string description = 1;
+}
+
+// Is alive?
+message IsAliveRequest { }
+
+message IsAliveResponse {
+	int64 uptime_seconds = 1;
+}
+
+message IsAliveV2Response {
+	bool server_online = 1;
+	bool subscription_online = 2;
+	int64 server_uptime_seconds = 3;
+}
+
+// Get Version
+message VersionResponse {
+	int64 version = 1;
+	string hash = 2;
+}
+
+message BedArmVersionResponse {
+	int64 version = 1;
+}
+
+// Simple empty request
+message EmptyRequest { }
+
+message EmptyResponse { }
+
+message BoolRequest {
+	bool value = 1;
+}
+
+message SimpleResponse {
+	bool success = 1;
+	string description = 2;
+}
+
+message SimpleResponseList {
+	repeated SimpleResponse responses = 1;
+}
+
+message ExtendedSimpleResponse {
+	string id = 1;
+	SimpleResponse response = 2;
+}
+
+message ExtendedSimpleResponseList {
+	repeated ExtendedSimpleResponse responses = 1;
+}
+
+// Common stuff
+message GetRequest {
+	repeated string ids = 1;
+}
+
+// Logs
+message LogResponse {
+	string logs = 1;
+}
+
+// Threshold
+message NoneThreshold { }
+
+message Threshold {
+    int64 upper_threshold = 1;
+	bool upper_threshold_valid = 2;
+    int64 lower_threshold = 3;
+	bool lower_threshold_valid = 4;
+}
+
+enum ExportStatus {
+	NOT_EXPORTED=0;
+	PARTIALLY_EXPORTED=1;
+	FULLY_EXPORTED=2;
+}
